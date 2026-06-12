@@ -69,12 +69,15 @@ export const manifest: ManifestEntry[] = [
   { source: "pmarchive", url: "https://pmarchive.com/guide_to_startups_part8.html", title: "Guide to Startups, Part 8: Hiring, managing, promoting, and firing executives" },
   { source: "pmarchive", url: "https://pmarchive.com/guide_to_startups_part9.html", title: "Guide to Startups, Part 9: How to hire a professional CEO" },
   { source: "pmarchive", url: "https://pmarchive.com/how_to_hire_the_best_people.html", title: "How to Hire the Best People You've Ever Worked With" },
-  { source: "pmarchive", url: "https://pmarchive.com/big_companies_are_different.html", title: "Big companies vs. little companies" },
+  // big_companies_are_different.html / business_school_part1.html never
+  // existed on pmarchive.com — substituted with the closest real pages
+  // (2026-06): Guide to Big Companies part 2 and Career Planning part 3.
+  { source: "pmarchive", url: "https://pmarchive.com/guide_to_big_companies_part2.html", title: "Guide to Big Companies: Retaining great people" },
   { source: "pmarchive", url: "https://pmarchive.com/age_and_the_entrepreneur.html", title: "Age and the Entrepreneur" },
-  { source: "pmarchive", url: "https://pmarchive.com/business_school_part1.html", title: "Should you go to business school?" },
+  { source: "pmarchive", url: "https://pmarchive.com/guide_to_career_planning_part3.html", title: "Guide to Career Planning, Part 3: Where to go and why" },
   { source: "pmarchive", url: "https://pmarchive.com/luck_and_the_entrepreneur.html", title: "Luck and the Entrepreneur" },
-  { source: "pmarchive", url: "https://pmarchive.com/career_planning_part1.html", title: "Guide to Career Planning, Part 1: Opportunity" },
-  { source: "pmarchive", url: "https://pmarchive.com/career_planning_part2.html", title: "Guide to Career Planning, Part 2: Skills and education" },
+  { source: "pmarchive", url: "https://pmarchive.com/guide_to_career_planning_part1.html", title: "Guide to Career Planning, Part 1: Opportunity" },
+  { source: "pmarchive", url: "https://pmarchive.com/guide_to_career_planning_part2.html", title: "Guide to Career Planning, Part 2: Skills and education" },
 
   // ── Sam Altman ──────────────────────────────────────────────────────
   { source: "altman", url: "https://playbook.samaltman.com",                     title: "Startup Playbook" },
@@ -99,11 +102,14 @@ export const manifest: ManifestEntry[] = [
   // ── Naval (essays only — defer podcast transcription) ────────────────
   { source: "naval", url: "https://nav.al/rich",              title: "How to Get Rich (Without Getting Lucky)" },
   { source: "naval", url: "https://nav.al/specific-knowledge", title: "How to Find Specific Knowledge" },
-  { source: "naval", url: "https://nav.al/wealth-creation",   title: "Wealth Creation" },
-  { source: "naval", url: "https://nav.al/leverage",          title: "Leverage" },
+  // wealth-creation / leverage / almanack never existed on nav.al (no
+  // Wayback record either) — substituted with real How to Get Rich episode
+  // pages (2026-06).
+  { source: "naval", url: "https://nav.al/seek-wealth",       title: "Seek Wealth, Not Money or Status" },
+  { source: "naval", url: "https://nav.al/labor-capital",     title: "Labor and Capital Are Old Leverage" },
   { source: "naval", url: "https://nav.al/judgment",          title: "Judgment" },
   { source: "naval", url: "https://nav.al/desire",            title: "Desire Is a Contract You Make With Yourself" },
-  { source: "naval", url: "https://nav.al/almanack",          title: "The Almanack — Building Wealth" },
+  { source: "naval", url: "https://nav.al/money-luck",        title: "Making Money Isn't About Luck" },
   { source: "naval", url: "https://nav.al/happiness",         title: "Happiness Is a Skill" },
 
   // ── Patrick Collison ────────────────────────────────────────────────
@@ -114,18 +120,26 @@ export const manifest: ManifestEntry[] = [
   { source: "collison", url: "https://patrickcollison.com/svb-stripe",    title: "Notes on Stripe's response to SVB" },
 
   // ── Brian Chesky (Medium + interview transcripts) ───────────────────
+  // Medium blocks direct scraping (403) — these two fetch via the Wayback
+  // fallback in fetchers/_shared/http.ts.
   { source: "chesky", url: "https://medium.com/@bchesky/dont-fuck-up-the-culture-597cde9ee9d4", title: "Don't Fuck Up the Culture" },
   { source: "chesky", url: "https://medium.com/@bchesky/7-rejections-7d894cbaa084", title: "7 Rejections" },
-  { source: "chesky", url: "https://medium.com/@bchesky/the-snow-white-deck", title: "The Snow White Deck" },
-  { source: "chesky", url: "https://medium.com/airbnb-tech-blog/handcrafted-design-on-airbnb", title: "On Handcrafted Experiences" },
-  { source: "chesky", url: "https://medium.com/@bchesky/founder-mode-and-the-builder", title: "Founder Mode and the Builder", notes: "Update URL when found — placeholder" },
+  // The three entries below were placeholder URLs that don't exist (no
+  // Medium post, no Wayback record). Commented out 2026-06 — restore with
+  // real URLs if the pieces are ever located.
+  // { source: "chesky", url: "https://medium.com/@bchesky/the-snow-white-deck", title: "The Snow White Deck" },
+  // { source: "chesky", url: "https://medium.com/airbnb-tech-blog/handcrafted-design-on-airbnb", title: "On Handcrafted Experiences" },
+  // { source: "chesky", url: "https://medium.com/@bchesky/founder-mode-and-the-builder", title: "Founder Mode and the Builder" },
 
   // ── Jeff Bezos shareholder letters ──────────────────────────────────
-  { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/1997-letter-to-shareholders", title: "1997 Letter to Shareholders" },
-  { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/2002-letter-to-shareholders", title: "2002 Letter to Shareholders" },
-  { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/2003-letter-to-shareholders", title: "2003 Letter to Shareholders" },
-  { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/2011-letter-to-shareholders", title: "2011 Letter to Shareholders" },
-  { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/2014-letter-to-shareholders", title: "2014 Letter to Shareholders" },
+  // aboutamazon.com only hosts 2016+ letters (plus a 1997 reprint at its own
+  // slug). The 2002/2003/2011/2014 letters live on SEC EDGAR as EX-99.1
+  // exhibits to Amazon's April 8-K filings — verified 2026-06.
+  { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/amazons-original-1997-letter-to-shareholders", title: "1997 Letter to Shareholders", published: "1998-03-30" },
+  { source: "bezos", url: "https://www.sec.gov/Archives/edgar/data/1018724/000089102003001186/v89126exv99w1.htm", title: "2002 Letter to Shareholders", published: "2003-04-11" },
+  { source: "bezos", url: "https://www.sec.gov/Archives/edgar/data/1018724/000119312504060718/dex991.htm", title: "2003 Letter to Shareholders", published: "2004-04-13" },
+  { source: "bezos", url: "https://www.sec.gov/Archives/edgar/data/1018724/000119312512161812/d329990dex991.htm", title: "2011 Letter to Shareholders", published: "2012-04-13" },
+  { source: "bezos", url: "https://www.sec.gov/Archives/edgar/data/1018724/000119312515144741/d895323dex991.htm", title: "2014 Letter to Shareholders", published: "2015-04-24" },
   { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/2016-letter-to-shareholders", title: "2016 Letter to Shareholders — Day 1" },
   { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/2018-letter-to-shareholders", title: "2018 Letter to Shareholders" },
   { source: "bezos", url: "https://www.aboutamazon.com/news/company-news/2020-letter-to-shareholders", title: "2020 Letter to Shareholders — Farewell" },

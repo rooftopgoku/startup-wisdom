@@ -738,6 +738,69 @@
     "imageUrl": "/paintings/luncheon-on-the-grass.webp"
   },
   {
+    "id": "woman-with-parasol",
+    "title": "Woman with a Parasol",
+    "artist": "Claude Monet",
+    "year": "1875",
+    "wikipediaPage": "Woman_with_a_Parasol_-_Madame_Monet_and_Her_Son",
+    "summary": "Wind in the fabric, a moment caught in passing — the value of fleeting things.",
+    "imageUrl": "/paintings/woman-with-parasol.webp"
+  },
+  {
+    "id": "haystacks-monet",
+    "title": "Haystacks (series)",
+    "artist": "Claude Monet",
+    "year": "1890–1891",
+    "wikipediaPage": "Haystacks_(Monet_series)",
+    "summary": "The same subject in twenty-five lights — variation as a method.",
+    "imageUrl": "/paintings/haystacks-monet.webp"
+  },
+  {
+    "id": "rouen-cathedral-monet",
+    "title": "Rouen Cathedral (series)",
+    "artist": "Claude Monet",
+    "year": "1892–1894",
+    "wikipediaPage": "Rouen_Cathedral_(Monet_series)",
+    "summary": "A fixed object made to feel different at every hour — re-running the experiment.",
+    "imageUrl": "/paintings/rouen-cathedral-monet.webp"
+  },
+  {
+    "id": "dance-class",
+    "title": "The Dance Class",
+    "artist": "Edgar Degas",
+    "year": "1874",
+    "wikipediaPage": "The_Dance_Class",
+    "summary": "Behind the scenes of the performance — the practice everyone forgets about.",
+    "imageUrl": "/paintings/dance-class.webp"
+  },
+  {
+    "id": "labsinthe",
+    "title": "L'Absinthe",
+    "artist": "Edgar Degas",
+    "year": "1875–1876",
+    "wikipediaPage": "L%27Absinthe",
+    "summary": "Two people at a table not talking — burnout, the silence of the long week.",
+    "imageUrl": "/paintings/labsinthe.webp"
+  },
+  {
+    "id": "where-do-we-come-from",
+    "title": "Where Do We Come From? What Are We? Where Are We Going?",
+    "artist": "Paul Gauguin",
+    "year": "1897–1898",
+    "wikipediaPage": "Where_Do_We_Come_From%3F_What_Are_We%3F_Where_Are_We_Going%3F",
+    "summary": "The big questions painted out at full scale — the manifesto piece.",
+    "imageUrl": "/paintings/where-do-we-come-from.webp"
+  },
+  {
+    "id": "vision-after-the-sermon",
+    "title": "Vision after the Sermon",
+    "artist": "Paul Gauguin",
+    "year": "1888",
+    "wikipediaPage": "Vision_after_the_Sermon",
+    "summary": "Wrestling on a red field — the internal fight made visible.",
+    "imageUrl": "/paintings/vision-after-the-sermon.webp"
+  },
+  {
     "id": "the-hay-wain",
     "title": "The Hay Wain",
     "artist": "John Constable",
@@ -745,5 +808,248 @@
     "wikipediaPage": "The_Hay_Wain",
     "summary": "A quiet day at the river — the unglamorous middle of the work.",
     "imageUrl": "/paintings/the-hay-wain.webp"
+  },
+  {
+    "id": "monk-by-the-sea",
+    "title": "The Monk by the Sea",
+    "artist": "Caspar David Friedrich",
+    "year": "1808–1810",
+    "wikipediaPage": "The_Monk_by_the_Sea",
+    "summary": "One figure facing an empty horizon — the founder before the market exists.",
+    "imageUrl": "/paintings/monk-by-the-sea.webp"
+  },
+  {
+    "id": "wedding-feast-at-cana",
+    "title": "The Wedding Feast at Cana",
+    "artist": "Paolo Veronese",
+    "year": "1563",
+    "wikipediaPage": "The_Wedding_Feast_at_Cana",
+    "summary": "A marriage celebrated at enormous scale — commitment turned into abundance.",
+    "imageUrl": "/paintings/wedding-feast-at-cana.webp"
+  },
+  {
+    "id": "ploughing-in-the-nivernais",
+    "title": "Ploughing in the Nivernais",
+    "artist": "Rosa Bonheur",
+    "year": "1849",
+    "wikipediaPage": "Ploughing_in_the_Nivernais",
+    "summary": "Heavy, patient work on owned land — the long furrow of the long term.",
+    "imageUrl": "/paintings/ploughing-in-the-nivernais.webp"
+  },
+  {
+    "id": "washington-crossing-the-delaware",
+    "title": "Washington Crossing the Delaware",
+    "artist": "Emanuel Leutze",
+    "year": "1851",
+    "wikipediaPage": "Washington_Crossing_the_Delaware_(1851_painting)",
+    "summary": "The bold all-in move at the lowest moment — day one of something enormous.",
+    "imageUrl": "/paintings/washington-crossing-the-delaware.webp"
+  },
+  {
+    "id": "the-floor-scrapers",
+    "title": "The Floor Scrapers",
+    "artist": "Gustave Caillebotte",
+    "year": "1875",
+    "wikipediaPage": "The_Floor_Scrapers",
+    "summary": "Stripping a floor down to clean wood — relentless, unglamorous efficiency.",
+    "imageUrl": "/paintings/the-floor-scrapers.webp"
+  },
+  {
+    "id": "the-orrery",
+    "title": "A Philosopher Lecturing on the Orrery",
+    "artist": "Joseph Wright of Derby",
+    "year": "c. 1766",
+    "wikipediaPage": "A_Philosopher_Lecturing_on_the_Orrery",
+    "summary": "Knowledge demonstrated to anyone who leans in — learning without gatekeepers.",
+    "imageUrl": "/paintings/the-orrery.webp"
+  },
+  {
+    "id": "peasant-wedding",
+    "title": "The Peasant Wedding",
+    "artist": "Pieter Bruegel the Elder",
+    "year": "1567",
+    "wikipediaPage": "The_Peasant_Wedding",
+    "summary": "The whole village at one table — culture as a shared meal.",
+    "imageUrl": "/paintings/peasant-wedding.webp"
+  },
+  {
+    "id": "self-portrait-two-circles",
+    "title": "Self-Portrait with Two Circles",
+    "artist": "Rembrandt",
+    "year": "c. 1665",
+    "wikipediaPage": "Self-Portrait_with_Two_Circles",
+    "summary": "The master beside two perfect freehand circles — holding the work to the standard.",
+    "imageUrl": "/paintings/self-portrait-two-circles.webp"
+  },
+  {
+    "id": "work-brown",
+    "title": "Work",
+    "artist": "Ford Madox Brown",
+    "year": "1852–1865",
+    "wikipediaPage": "Work_(painting)",
+    "summary": "Every kind of labor in one street scene — what trading time for output looks like.",
+    "imageUrl": "/paintings/work-brown.webp"
+  },
+  {
+    "id": "experiment-on-a-bird",
+    "title": "An Experiment on a Bird in the Air Pump",
+    "artist": "Joseph Wright of Derby",
+    "year": "1768",
+    "wikipediaPage": "An_Experiment_on_a_Bird_in_the_Air_Pump",
+    "summary": "Science demonstrated live, with stakes — the education that actually transfers.",
+    "imageUrl": "/paintings/experiment-on-a-bird.webp"
+  },
+  {
+    "id": "fur-traders-missouri",
+    "title": "Fur Traders Descending the Missouri",
+    "artist": "George Caleb Bingham",
+    "year": "1845",
+    "wikipediaPage": "Fur_Traders_Descending_the_Missouri",
+    "summary": "Commerce drifting down a frontier river — going where the opportunity is.",
+    "imageUrl": "/paintings/fur-traders-missouri.webp"
+  },
+  {
+    "id": "breezing-up",
+    "title": "Breezing Up (A Fair Wind)",
+    "artist": "Winslow Homer",
+    "year": "1873–1876",
+    "wikipediaPage": "Breezing_Up_(A_Fair_Wind)",
+    "summary": "A small crew leaning into a fair wind — seizing the conditions when they come.",
+    "imageUrl": "/paintings/breezing-up.webp"
+  },
+  {
+    "id": "syndics-of-drapers-guild",
+    "title": "Syndics of the Drapers' Guild",
+    "artist": "Rembrandt",
+    "year": "1662",
+    "wikipediaPage": "Syndics_of_the_Drapers%27_Guild",
+    "summary": "The board looking up from the table — the institution and the people who run it.",
+    "imageUrl": "/paintings/syndics-of-drapers-guild.webp"
+  },
+  {
+    "id": "the-ninth-wave",
+    "title": "The Ninth Wave",
+    "artist": "Ivan Aivazovsky",
+    "year": "1850",
+    "wikipediaPage": "The_Ninth_Wave",
+    "summary": "Survivors of the wreck at sunrise — vindication after everyone said it was over.",
+    "imageUrl": "/paintings/the-ninth-wave.webp"
+  },
+  {
+    "id": "alchymist-phosphorus",
+    "title": "The Alchymist Discovering Phosphorus",
+    "artist": "Joseph Wright of Derby",
+    "year": "1771",
+    "wikipediaPage": "The_Alchymist_Discovering_Phosphorus",
+    "summary": "Obsessive search rewarded by accidental light — the temperament of the discoverer.",
+    "imageUrl": "/paintings/alchymist-phosphorus.webp"
+  },
+  {
+    "id": "fishermen-at-sea",
+    "title": "Fishermen at Sea",
+    "artist": "J. M. W. Turner",
+    "year": "1796",
+    "wikipediaPage": "Fishermen_at_Sea",
+    "summary": "A small boat positioned in the swell, waiting — patience among forces bigger than you.",
+    "imageUrl": "/paintings/fishermen-at-sea.webp"
+  },
+  {
+    "id": "the-lacemaker",
+    "title": "The Lacemaker",
+    "artist": "Johannes Vermeer",
+    "year": "c. 1670",
+    "wikipediaPage": "The_Lacemaker_(Vermeer)",
+    "summary": "Total absorption in one tiny piece of work — making a single thing perfectly.",
+    "imageUrl": "/paintings/the-lacemaker.webp"
+  },
+  {
+    "id": "the-gross-clinic",
+    "title": "The Gross Clinic",
+    "artist": "Thomas Eakins",
+    "year": "1875",
+    "wikipediaPage": "The_Gross_Clinic",
+    "summary": "The master operating while students stretch to keep up — talent developed under pressure.",
+    "imageUrl": "/paintings/the-gross-clinic.webp"
+  },
+  {
+    "id": "hope-watts",
+    "title": "Hope",
+    "artist": "George Frederic Watts",
+    "year": "1886",
+    "wikipediaPage": "Hope_(Watts)",
+    "summary": "Blindfolded, playing the one string that's left — what persistence actually looks like.",
+    "imageUrl": "/paintings/hope-watts.webp"
+  },
+  {
+    "id": "fortune-teller-caravaggio",
+    "title": "The Fortune Teller",
+    "artist": "Caravaggio",
+    "year": "c. 1595",
+    "wikipediaPage": "The_Fortune_Teller_(Caravaggio)",
+    "summary": "While he listens to his fortune, she's slipping off his ring — luck is not the mechanism.",
+    "imageUrl": "/paintings/fortune-teller-caravaggio.webp"
+  },
+  {
+    "id": "moneylender-and-wife",
+    "title": "The Moneylender and His Wife",
+    "artist": "Quentin Matsys",
+    "year": "1514",
+    "wikipediaPage": "The_Moneylender_and_his_Wife",
+    "summary": "Gold weighed against the prayer book — money, status, and what actually counts.",
+    "imageUrl": "/paintings/moneylender-and-wife.webp"
+  },
+  {
+    "id": "the-oxbow",
+    "title": "View from Mount Holyoke (The Oxbow)",
+    "artist": "Thomas Cole",
+    "year": "1836",
+    "wikipediaPage": "The_Oxbow",
+    "summary": "The whole landscape read from above — strategy as seeing the world, not your own products.",
+    "imageUrl": "/paintings/the-oxbow.webp"
+  },
+  {
+    "id": "the-doctor-fildes",
+    "title": "The Doctor",
+    "artist": "Luke Fildes",
+    "year": "1891",
+    "wikipediaPage": "The_Doctor_(painting)",
+    "summary": "All night at one bedside — the problems you cannot 80/20.",
+    "imageUrl": "/paintings/the-doctor-fildes.webp"
+  },
+  {
+    "id": "art-of-painting",
+    "title": "The Art of Painting",
+    "artist": "Johannes Vermeer",
+    "year": "c. 1666–1668",
+    "wikipediaPage": "The_Art_of_Painting",
+    "summary": "The painter at the easel inside his own picture — thinking and making as one act.",
+    "imageUrl": "/paintings/art-of-painting.webp"
+  },
+  {
+    "id": "lady-with-an-ermine",
+    "title": "Lady with an Ermine",
+    "artist": "Leonardo da Vinci",
+    "year": "c. 1489",
+    "wikipediaPage": "Lady_with_an_Ermine",
+    "summary": "Character read in a glance — the portrait that sizes someone up.",
+    "imageUrl": "/paintings/lady-with-an-ermine.webp"
+  },
+  {
+    "id": "woman-holding-a-balance",
+    "title": "Woman Holding a Balance",
+    "artist": "Johannes Vermeer",
+    "year": "c. 1663",
+    "wikipediaPage": "Woman_Holding_a_Balance",
+    "summary": "An empty scale held perfectly still — judgment before the weighing.",
+    "imageUrl": "/paintings/woman-holding-a-balance.webp"
+  },
+  {
+    "id": "the-horse-fair",
+    "title": "The Horse Fair",
+    "artist": "Rosa Bonheur",
+    "year": "1852–1855",
+    "wikipediaPage": "The_Horse_Fair",
+    "summary": "Raw power barely held in line at market — the energy of commerce.",
+    "imageUrl": "/paintings/the-horse-fair.webp"
   }
 ]

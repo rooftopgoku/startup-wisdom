@@ -115,6 +115,23 @@ async function main() {
       if (!creatorId) {
         throw new Error(`creator not in DB: ${fetched.creator_slug}`)
       }
+      // Some fetchers canonicalize external_url (e.g. startup-archive-yt
+      // stores the embedded YouTube URL, not the manifest URL), so the
+      // pre-fetch existence check above can miss. Re-check before upserting,
+      // or every run would reset extracted rows back to draft/pending.
+      if (fetched.external_url !== entry.url) {
+        const { data: existingCanonical } = await supabase
+          .from("resources")
+          .select("id, raw_text")
+          .eq("source_id", sourceId)
+          .eq("external_url", fetched.external_url)
+          .maybeSingle()
+        if (existingCanonical?.raw_text) {
+          console.log(`  ✓ exists ${fetched.external_url}`)
+          skipped++
+          continue
+        }
+      }
       const { error } = await supabase.from("resources").upsert(
         {
           source_id: sourceId,
