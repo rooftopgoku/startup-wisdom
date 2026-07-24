@@ -49,9 +49,18 @@ export async function fetchHtml(
             method: "GET",
             redirect: "follow",
             headers: {
+              // Realistic desktop-browser UA. Several sources (a16z, Medium,
+              // some WordPress blogs) serve a stripped index/landing page — or
+              // a hard 403 — to obvious bot user-agents, which is how essays
+              // previously got scraped as the wrong page.
               "User-Agent":
-                "archive-scraper/0.1 (+https://archive.example) AppleWebKit/537.36",
-              Accept: "text/html,application/xhtml+xml",
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+              Accept:
+                "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+              "Accept-Language": "en-US,en;q=0.9",
+              "Sec-Fetch-Dest": "document",
+              "Sec-Fetch-Mode": "navigate",
+              "Upgrade-Insecure-Requests": "1",
               ...headers,
             },
           })
