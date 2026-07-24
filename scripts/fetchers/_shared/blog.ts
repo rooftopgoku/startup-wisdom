@@ -172,8 +172,34 @@ export async function fetchGenericBlog(
     stripSelectors: config.stripSelectors,
   })
 
-  const title = hintedTitle || parsed.title
+ const title = hintedTitle || parsed.title
   const wordCount = parsed.bodyText.split(/\s+/).filter(Boolean).length
+
+  // Quality gate: reject blocked / wrong / index-page scrapes before they get
+  // saved as junk. Previously, bot-walled sources returned a 200 index or
+  // landing page and it was stored as the article body.
+  if (wordCount < 150) {
+    throw new Error(
+      `scrape too thin (${wordCount} words) for ${url} — likely blocked or a non-article page`
+    )
+  }
+  if (hintedTitle) {
+    const significantWords = (s: string) =>
+      new Set(
+        s
+          .toLowerCase()
+          .replace(/[^a-z0-9\s]/g, " ")
+          .split(/\s+/)
+          .filter((w) => w.length >= 4)
+      )
+    const wanted = significantWords(hintedTitle)
+    const got = significantWords(parsed.title || "")
+    if (wanted.size > 0 && ![...wanted].some((w) => got.has(w))) {
+      throw new Error(
+        `possible wrong page for "${hintedTitle}" — got page titled "${parsed.title}" at ${url}`
+      )
+    }
+  }
 
   return {
     source_slug: config.sourceSlug,
