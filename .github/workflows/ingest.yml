@@ -1,0 +1,56 @@
+name: Ingest content
+
+# Runs the content pipeline against any rows sitting in the Supabase
+# `content_queue` table with status = 'queued':
+#   scrape  -> pull raw text for each queued URL
+#   extract -> Claude writes highlights + topics, publishes the resource
+#   describe-> Claude writes the one-line card description
+#   match   -> Claude picks the illustrating painting
+#
+# Trigger it two ways:
+#   • Manually  — Actions tab -> "Ingest content" -> "Run workflow"
+#   • On a schedule — the cron below (daily). Delete the `schedule:` block
+#     if you'd rather only ever run it by hand.
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "17 9 * * *" # 09:17 UTC daily (~3-4am US Central)
+
+# Never let two ingest runs overlap (they'd fight over the same rows).
+concurrency:
+  group: ingest-content
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Scrape queued rows
+        run: npx tsx scripts/scrape.ts
+
+      - name: Extract highlights & topics
+        run: npx tsx scripts/extract.ts
+
+      - name: Generate card descriptions
+        run: npx tsx scripts/generate-descriptions.ts
+
+      - name: Match paintings
+        run: npx tsx scripts/match-paintings.ts
