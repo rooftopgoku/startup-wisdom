@@ -1,13 +1,16 @@
-// Manifest-driven scraper. Reads data/manifest.ts, dispatches to per-source
-// fetchers, upserts results into Supabase as draft/pending rows.
+// Queue-driven scraper. Reads pending rows from the `content_queue` table in
+// Supabase, dispatches to per-source fetchers, upserts results into Supabase
+// as draft/pending resources, then flips each queue row to done (or error).
 //
-// Run with:  npx tsx scripts/scrape.ts [--source pmarchive] [--limit 5]
+// Add new content by inserting a row into content_queue (status defaults to
+// 'queued') — no code edits needed. Run with:
+//   npx tsx scripts/scrape.ts [--source pmarchive] [--limit 5]
 
 import { config as dotenv } from "dotenv"
 dotenv({ path: ".env.local" })
 dotenv()
 
-import { manifest, type ManifestEntry, type ManifestSource } from "../data/manifest"
+import { type ManifestSource } from "../data/manifest"
 import { createSupabaseAdminClient } from "../src/lib/supabase/admin"
 import { fetchAltman } from "./fetchers/altman"
 import { fetchBezos } from "./fetchers/bezos"
@@ -32,10 +35,20 @@ const fetchers: Partial<Record<ManifestSource, FetcherFn>> = {
   bezos: fetchBezos,
   bhorowitz: fetchHorowitz,
   // startup-archive-yt: text sourced from startupArchive.org blog posts
-  // (curated writeups of the channel's clips). Each manifest entry's `url`
+  // (curated writeups of the channel's clips). Each queue row's `url`
   // points at startupArchive.org/p/<slug>; the fetcher extracts the embedded
   // YouTube URL as the canonical external_url.
   "startup-archive-yt": fetchStartupArchive,
+}
+
+interface QueueEntry {
+  id: string
+  source: ManifestSource
+  url?: string
+  externalId?: string
+  title?: string
+  published?: string
+  notes?: string
 }
 
 interface Args {
@@ -58,6 +71,22 @@ async function main() {
   const args = parseArgs()
   const supabase = createSupabaseAdminClient()
 
+  // Flip a queue row to its terminal state so it isn't reprocessed next run.
+  const mark = async (
+    id: string,
+    status: "done" | "error",
+    error?: string
+  ) => {
+    await supabase
+      .from("content_queue")
+      .update({
+        status,
+        error: error ?? null,
+        processed_at: new Date().toISOString(),
+      })
+      .eq("id", id)
+  }
+
   // Pre-load lookup maps so we don't roundtrip on every upsert.
   const [{ data: creators }, { data: sources }] = await Promise.all([
     supabase.from("creators").select("id, slug"),
@@ -66,11 +95,29 @@ async function main() {
   const creatorBySlug = new Map(creators?.map((c) => [c.slug, c.id]) ?? [])
   const sourceBySlug = new Map(sources?.map((s) => [s.slug, s.id]) ?? [])
 
-  let entries: ManifestEntry[] = manifest
-  if (args.source) entries = entries.filter((e) => e.source === args.source)
+  // Load the work list from the queue table (status = 'queued').
+  let queueQuery = supabase
+    .from("content_queue")
+    .select("id, source, url, external_id, title, published, notes")
+    .eq("status", "queued")
+    .order("created_at", { ascending: true })
+  if (args.source) queueQuery = queueQuery.eq("source", args.source)
+
+  const { data: queueRows, error: queueErr } = await queueQuery
+  if (queueErr) throw queueErr
+
+  let entries: QueueEntry[] = (queueRows ?? []).map((r: Record<string, unknown>) => ({
+    id: r.id as string,
+    source: r.source as ManifestSource,
+    url: (r.url as string) ?? undefined,
+    externalId: (r.external_id as string) ?? undefined,
+    title: (r.title as string) ?? undefined,
+    published: (r.published as string) ?? undefined,
+    notes: (r.notes as string) ?? undefined,
+  }))
   if (args.limit) entries = entries.slice(0, args.limit)
 
-  console.log(`Scraping ${entries.length} entries…`)
+  console.log(`Scraping ${entries.length} queued entr${entries.length === 1 ? "y" : "ies"}…`)
 
   let ok = 0
   let skipped = 0
@@ -80,23 +127,27 @@ async function main() {
     const fetcher = fetchers[entry.source]
     if (!fetcher) {
       console.log(`  skip [${entry.source}] no fetcher implemented`)
-      skipped++
+      await mark(entry.id, "error", "no fetcher implemented for this source")
+      failed++
       continue
     }
     if (!entry.url) {
       console.log(`  skip [${entry.source}] no url`)
-      skipped++
+      await mark(entry.id, "error", "no url provided")
+      failed++
       continue
     }
 
     const sourceId = sourceBySlug.get(entry.source)
     if (!sourceId) {
       console.log(`  skip [${entry.source}] source not in DB — seed creators+sources first`)
-      skipped++
+      await mark(entry.id, "error", "source not seeded in DB (creators+sources)")
+      failed++
       continue
     }
 
-    // Idempotency: skip if row exists with non-null raw_text.
+    // Idempotency: if a row already exists with non-null raw_text, treat the
+    // queue row as done rather than re-fetching.
     const { data: existing } = await supabase
       .from("resources")
       .select("id, raw_text")
@@ -105,6 +156,7 @@ async function main() {
       .maybeSingle()
     if (existing?.raw_text) {
       console.log(`  ✓ exists ${entry.url}`)
+      await mark(entry.id, "done")
       skipped++
       continue
     }
@@ -116,7 +168,7 @@ async function main() {
         throw new Error(`creator not in DB: ${fetched.creator_slug}`)
       }
       // Some fetchers canonicalize external_url (e.g. startup-archive-yt
-      // stores the embedded YouTube URL, not the manifest URL), so the
+      // stores the embedded YouTube URL, not the queue URL), so the
       // pre-fetch existence check above can miss. Re-check before upserting,
       // or every run would reset extracted rows back to draft/pending.
       if (fetched.external_url !== entry.url) {
@@ -128,6 +180,7 @@ async function main() {
           .maybeSingle()
         if (existingCanonical?.raw_text) {
           console.log(`  ✓ exists ${fetched.external_url}`)
+          await mark(entry.id, "done")
           skipped++
           continue
         }
@@ -154,9 +207,12 @@ async function main() {
       )
       if (error) throw error
       console.log(`  + ${fetched.title}`)
+      await mark(entry.id, "done")
       ok++
     } catch (err) {
-      console.error(`  ✗ ${entry.url}:`, err instanceof Error ? err.message : err)
+      const msg = err instanceof Error ? err.message : String(err)
+      console.error(`  ✗ ${entry.url}:`, msg)
+      await mark(entry.id, "error", msg)
       failed++
     }
   }
