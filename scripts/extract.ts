@@ -134,6 +134,15 @@ async function main() {
         .eq("resource_id", r.id)
       if (delErr) throw delErr
 
+     // Drop any supporting highlight that just repeats the key highlight —
+      // the model often echoes it as the first bullet, which reads as padding.
+      const norm = (s: string) =>
+        s.toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim()
+      const keyPrefix = norm(result.key_highlight.body).slice(0, 60)
+      const dedupedSupporting = result.highlights.filter(
+        (h) => norm(h.body).slice(0, 60) !== keyPrefix
+      )
+
       const highlightRows = [
         {
           resource_id: r.id,
@@ -143,7 +152,7 @@ async function main() {
           context: result.key_highlight.context ?? null,
           timestamp_seconds: result.key_highlight.timestamp_seconds ?? null,
         },
-        ...result.highlights.map((h, i) => ({
+        ...dedupedSupporting.map((h, i) => ({
           resource_id: r.id,
           body: h.body,
           is_key: false,
