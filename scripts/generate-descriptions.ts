@@ -74,17 +74,24 @@ Rules:
 - ONE complete sentence. AIM for under ${TARGET_CHARS} characters. HARD CEILING: ${MAX_DESCRIPTION_CHARS} characters total — if you exceed this, the description is thrown away.
 - It must be a finished thought — never cut off, never end with "...", "…", an em-dash, or a trailing word fragment. If you can't finish the thought in ${MAX_DESCRIPTION_CHARS} characters, write something shorter and more compact. Cut adjectives, drop lists, find the single tightest framing.
 - End with a single period.
-- Describe what the piece is *about*. Not a quote. Not a teaser ("find out why..."). Not a recap of the first paragraph.
-- Plain, declarative voice. No marketing fluff ("must-read", "essential"). No meta phrasing ("In this essay, the author argues...", "This talk explains..."). Just say the thing.
-- Start with a concrete noun phrase or a "How / Why / What" question, not the author's name.
-- If the piece has a strong central argument, lead with it.
-- Faithful to the source. Don't invent claims that aren't there.
+- Describe the durable IDEA a reader takes away — lead with the claim itself, stated plainly.
+- NEVER open with the author's name or a possessive framing ("Graham's argument…", "Altman's thesis…", "Bezos's message…"). State the idea, not who said it.
+- NEVER describe the artifact instead of its content. Banned openings include: "reprinted from…", "the letter he sent…", "a collection of…", "his closing line…", "in the clip below…", "in this essay/talk…". The reader can already see it's an essay or talk — give them the insight.
+- NEVER output a raw quote as the description, and never a teaser ("find out why…") or a recap of the first paragraph.
+- Plain, declarative voice. No marketing fluff ("must-read", "essential").
+- Start with a concrete noun phrase or a "How / Why / What" framing.
+- Faithful to THIS specific piece — capture its central argument, not a generic theme that could describe ten other essays.
 
-Examples (each well under ${MAX_DESCRIPTION_CHARS} characters, each a complete sentence):
+Rewrites — weak → strong (these are real failures to avoid):
+- BAD: "Graham's argument for why where you live matters." → GOOD: "Where you live shapes your ambition more than you'd expect — each city broadcasts what to want."
+- BAD: "Jeff Bezos' original letter, reprinted from Amazon's 1997 Annual Report." → GOOD: "It's always Day 1: long-term thinking and customer obsession over optimizing quarterly numbers."
+- BAD: "A collection of open-ended questions about progress and institutions." → GOOD: "Hard questions about why scientific and economic progress slowed, and what would restart it."
+- BAD: "You have to know who those first users are." (a raw quote) → GOOD: "Growth starts with a small, intense fire: a few users who want it badly, not many who mildly like it."
+
+Good examples (each a complete sentence, well under ${MAX_DESCRIPTION_CHARS} characters):
 - "Why the most successful early-stage startups do things that don't scale." (73)
 - "The best startup ideas come from problems you have yourself." (60)
 - "Two incompatible ways to use time: the maker's schedule and the manager's schedule." (84)
-- "Ambition is a recruiting and gravitational advantage, not a liability." (70)
 - "Meanness correlates with startup failure because it costs you talent." (69)
 
 Call the ${TOOL_NAME} tool with your output. Do not respond in plain text.`
