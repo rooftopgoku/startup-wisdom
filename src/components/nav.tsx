@@ -10,7 +10,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 const links = [
   { href: "/", label: "Database" },
   { href: "/highlights", label: "Highlights" },
-  { href: "/newsletter", label: "Newsletter" },
+  { href: "https://startupwisdom.beehiiv.com/", label: "Newsletter" },
 ]
 
 export function Nav() {
