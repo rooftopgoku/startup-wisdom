@@ -20,7 +20,16 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "upload.wikimedia.org" },
       { protocol: "https", hostname: "substackcdn.com" },
       { protocol: "https", hostname: "substack-post-media.s3.amazonaws.com" },
-    ],
+   ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/newsletter",
+        destination: "https://startupwisdom.beehiiv.com/",
+        permanent: true,
+      },
+    ]
   },
 }
 
