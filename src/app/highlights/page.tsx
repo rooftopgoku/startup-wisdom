@@ -49,7 +49,7 @@ export default async function HighlightsPage() {
     <div className="pt-10 pb-12 sm:pt-14">
       <header className="mx-auto mb-8 max-w-4xl px-5 text-center sm:mb-10 sm:px-8">
         <h1 className="font-serif text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-          The internet&rsquo;s greatest highlights
+          Wisdom from the world&rsquo;s greatest founders
         </h1>
       </header>
 
